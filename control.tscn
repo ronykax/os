@@ -1,0 +1,134 @@
+[gd_scene load_steps=7 format=3 uid="uid://l4cj0lwya8ce"]
+
+[ext_resource type="Shader" uid="uid://rm736fhwekow" path="res://scripts/crt.gdshader" id="1_0fbet"]
+[ext_resource type="PackedScene" uid="uid://cmb82hi7uel06" path="res://scenes/desktop.tscn" id="1_qtu10"]
+[ext_resource type="Texture2D" uid="uid://52g0hn647n1g" path="res://assets/icons/arrow.png" id="3_kbped"]
+[ext_resource type="Texture2D" uid="uid://de7rhhwj0gc72" path="res://assets/icons/edgeborder.png" id="4_iy58a"]
+[ext_resource type="Script" uid="uid://chdj5nuvrqpon" path="res://scripts/cursor.gd" id="4_kbped"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0fbet"]
+shader = ExtResource("1_0fbet")
+shader_parameter/resolution = Vector2(1024, 768)
+shader_parameter/scan_line_amount = 0.35
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.05
+shader_parameter/interference_amount = 0.75
+shader_parameter/grille_amount = 0.075
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.6
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = 8.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Desktop" parent="MarginContainer" instance=ExtResource("1_qtu10")]
+layout_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Cursor" type="Marker2D" parent="CanvasLayer"]
+position = Vector2(684, 413)
+gizmo_extents = 56.0
+script = ExtResource("4_kbped")
+
+[node name="Point" type="Node2D" parent="CanvasLayer/Cursor"]
+rotation = -0.523599
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Cursor/Point"]
+position = Vector2(0, 14)
+texture = ExtResource("3_kbped")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Borders" type="Control" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TopLeft" type="TextureRect" parent="CanvasLayer/MarginContainer/Borders"]
+layout_mode = 1
+offset_right = 4.0
+offset_bottom = 4.0
+texture = ExtResource("4_iy58a")
+
+[node name="TopRight" type="TextureRect" parent="CanvasLayer/MarginContainer/Borders"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+texture = ExtResource("4_iy58a")
+flip_h = true
+
+[node name="BottomLeft" type="TextureRect" parent="CanvasLayer/MarginContainer/Borders"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_right = 4.0
+grow_vertical = 0
+texture = ExtResource("4_iy58a")
+flip_v = true
+
+[node name="BottomRight" type="TextureRect" parent="CanvasLayer/MarginContainer/Borders"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_iy58a")
+flip_h = true
+flip_v = true
+
+[node name="CRT" type="ColorRect" parent="CanvasLayer/MarginContainer"]
+material = SubResource("ShaderMaterial_0fbet")
+layout_mode = 2
+mouse_filter = 2
