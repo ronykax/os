@@ -2,8 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://byx5ps5odwlkv" path="res://assets/fonts/VT323-Regular.ttf" id="1_qnju7"]
 [ext_resource type="Texture2D" uid="uid://bi1g7alag1ayx" path="res://assets/icons/close.png" id="2_qnju7"]
-[ext_resource type="Texture2D" uid="uid://xpq0qhhbhug6" path="res://assets/icons/border.png" id="3_qnju7"]
 [ext_resource type="Script" uid="uid://ct217juvyo5xy" path="res://scripts/window_functionality.gd" id="4_ato5p"]
+[ext_resource type="Texture2D" uid="uid://b7oomn0locjpx" path="res://assets/images/bordernew.png" id="4_syahi"]
 
 [sub_resource type="Gradient" id="Gradient_oya5r"]
 colors = PackedColorArray(0.020073, 0.144735, 0.394341, 1, 1, 1, 1, 1)
@@ -32,9 +32,9 @@ theme_override_constants/separation = 0
 [node name="Top" type="MarginContainer" parent="VBoxContainer"]
 editor_description = "No margin at the bottom because it adds a gap between Top and Bottom"
 layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 0
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer/Top"]
@@ -66,7 +66,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_qnju7")
 theme_override_font_sizes/font_size = 20
-text = "imma touch u"
+text = "hi rony"
 
 [node name="Buttons" type="MarginContainer" parent="VBoxContainer/Top/HBoxContainer"]
 layout_mode = 2
@@ -79,19 +79,19 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 texture_normal = ExtResource("2_qnju7")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="Bottom" type="MarginContainer" parent="VBoxContainer"]
 editor_description = "No margin at the top because it adds a gap between Top and Bottom"
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 2
+theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
-[node name="Contents" type="Control" parent="VBoxContainer/MarginContainer"]
+[node name="Contents" type="Control" parent="VBoxContainer/Bottom"]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer/Contents"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Bottom/Contents"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,21 +99,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_qnju7")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
+texture = ExtResource("4_syahi")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 
 [node name="WindowFunctionality" type="Node" parent="."]
 script = ExtResource("4_ato5p")
 
+[connection signal="gui_input" from="." to="WindowFunctionality" method="_on_window_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/Top/HBoxContainer/Draggable" to="WindowFunctionality" method="_on_draggable_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Top/HBoxContainer/Buttons/CloseButton" to="WindowFunctionality" method="_on_close_button_pressed"]

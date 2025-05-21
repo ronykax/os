@@ -1,16 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmb82hi7uel06"]
+[gd_scene load_steps=10 format=3 uid="uid://cmb82hi7uel06"]
 
 [ext_resource type="Texture2D" uid="uid://edd4wrefgpgk" path="res://assets/images/bg2.jpg" id="1_veafp"]
 [ext_resource type="Script" uid="uid://5frl3up50aue" path="res://scripts/desktop_functionality.gd" id="1_xxa2h"]
 [ext_resource type="PackedScene" uid="uid://daicjnek8rqh1" path="res://scenes/window.tscn" id="2_81rff"]
-[ext_resource type="PackedScene" uid="uid://ce6jhbohap3ir" path="res://scenes/icon.tscn" id="2_ox5hf"]
+[ext_resource type="PackedScene" uid="uid://dae1g1cvob8rt" path="res://desktop_icons.tscn" id="3_veafp"]
 [ext_resource type="Texture2D" uid="uid://d2dfx8u6s2aj3" path="res://assets/icons/skull.png" id="4_veafp"]
 [ext_resource type="FontFile" uid="uid://byx5ps5odwlkv" path="res://assets/fonts/VT323-Regular.ttf" id="5_veafp"]
+[ext_resource type="Texture2D" uid="uid://dve4dx072r782" path="res://assets/images/bordernew2.png" id="7_veafp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_veafp"]
 bg_color = Color(0.847474, 0.847474, 0.847474, 1)
-border_width_top = 2
-border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ajoh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -79,25 +78,30 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VFlowContainer" type="VFlowContainer" parent="VBoxContainer/DesktopView/Icons/MarginContainer"]
-layout_mode = 2
-theme_override_constants/v_separation = 24
-
-[node name="Icon" parent="VBoxContainer/DesktopView/Icons/MarginContainer/VFlowContainer" instance=ExtResource("2_ox5hf")]
+[node name="DesktopIcons" parent="VBoxContainer/DesktopView/Icons/MarginContainer" instance=ExtResource("3_veafp")]
 layout_mode = 2
 
-[node name="Icon2" parent="VBoxContainer/DesktopView/Icons/MarginContainer/VFlowContainer" instance=ExtResource("2_ox5hf")]
-layout_mode = 2
+[node name="Windows" type="Control" parent="VBoxContainer/DesktopView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Icon3" parent="VBoxContainer/DesktopView/Icons/MarginContainer/VFlowContainer" instance=ExtResource("2_ox5hf")]
-layout_mode = 2
-
-[node name="Window" parent="VBoxContainer/DesktopView" instance=ExtResource("2_81rff")]
+[node name="Window" parent="VBoxContainer/DesktopView/Windows" instance=ExtResource("2_81rff")]
 layout_mode = 1
 offset_left = 322.0
 offset_top = 100.0
 offset_right = -105.0
 offset_bottom = -210.0
+
+[node name="Window2" parent="VBoxContainer/DesktopView/Windows" instance=ExtResource("2_81rff")]
+layout_mode = 1
+offset_left = 155.0
+offset_top = 246.0
+offset_right = -272.0
+offset_bottom = -64.0
 
 [node name="Taskbar" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -159,5 +163,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_veafp")
 theme_override_font_sizes/font_size = 16
 text = "12:80 AM"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/Taskbar"]
+layout_mode = 2
+texture = ExtResource("7_veafp")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 
 [connection signal="pressed" from="VBoxContainer/Taskbar/MarginContainer/HBoxContainer/Left/StartButton" to="Functionality" method="_on_start_button_pressed"]

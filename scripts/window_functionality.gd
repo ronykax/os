@@ -18,3 +18,7 @@ func _on_draggable_gui_input(event: InputEvent) -> void:
 func _on_close_button_pressed() -> void:
 	# actually remove the app process in future
 	window.queue_free()
+
+func _on_window_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		window.get_parent().move_child(window, window.get_parent().get_child_count())
