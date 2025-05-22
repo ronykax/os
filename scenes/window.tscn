@@ -1,15 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://daicjnek8rqh1"]
+[gd_scene load_steps=5 format=3 uid="uid://daicjnek8rqh1"]
 
+[ext_resource type="Script" uid="uid://dwce3uc28suy8" path="res://scripts/window.gd" id="1_ato5p"]
 [ext_resource type="FontFile" uid="uid://byx5ps5odwlkv" path="res://assets/fonts/VT323-Regular.ttf" id="1_qnju7"]
 [ext_resource type="Texture2D" uid="uid://bi1g7alag1ayx" path="res://assets/icons/close.png" id="2_qnju7"]
-[ext_resource type="Script" uid="uid://ct217juvyo5xy" path="res://scripts/window_functionality.gd" id="4_ato5p"]
-[ext_resource type="Texture2D" uid="uid://b7oomn0locjpx" path="res://assets/images/bordernew.png" id="4_syahi"]
-
-[sub_resource type="Gradient" id="Gradient_oya5r"]
-colors = PackedColorArray(0.020073, 0.144735, 0.394341, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_to7fh"]
-gradient = SubResource("Gradient_oya5r")
+[ext_resource type="Texture2D" uid="uid://brwvbv41ykkra" path="res://assets/images/border yes.png" id="3_qnju7"]
 
 [node name="Window" type="Control"]
 clip_contents = true
@@ -19,6 +13,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_ato5p")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -40,12 +36,6 @@ theme_override_constants/margin_bottom = 0
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer/Top"]
 layout_mode = 2
 color = Color(0, 0, 0.662745, 1)
-
-[node name="Gradient" type="TextureRect" parent="VBoxContainer/Top"]
-visible = false
-layout_mode = 2
-texture = SubResource("GradientTexture2D_to7fh")
-expand_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Top"]
 layout_mode = 2
@@ -99,6 +89,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Button" type="Button" parent="VBoxContainer/Bottom/Contents"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "click meee pleaseee"
+
 [node name="NinePatchRect2" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -106,15 +111,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_syahi")
+texture = ExtResource("3_qnju7")
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="WindowFunctionality" type="Node" parent="."]
-script = ExtResource("4_ato5p")
-
-[connection signal="gui_input" from="." to="WindowFunctionality" method="_on_window_gui_input"]
-[connection signal="gui_input" from="VBoxContainer/Top/HBoxContainer/Draggable" to="WindowFunctionality" method="_on_draggable_gui_input"]
-[connection signal="pressed" from="VBoxContainer/Top/HBoxContainer/Buttons/CloseButton" to="WindowFunctionality" method="_on_close_button_pressed"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/Top/HBoxContainer/Draggable" to="." method="_on_draggable_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Top/HBoxContainer/Buttons/CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Process" load_steps=3 format=3 uid="uid://evk1jgy3by2d"]
+
+[ext_resource type="PackedScene" uid="uid://dkb11ge7dwfbu" path="res://resources/contents/video_player.tscn" id="1_dgak6"]
+[ext_resource type="Script" uid="uid://qrj8xqbcyce7" path="res://resources/scripts/process.gd" id="1_u1vcs"]
+
+[resource]
+script = ExtResource("1_u1vcs")
+name = "Video Player"
+description = "A player that plays videos"
+contents = ExtResource("1_dgak6")
+metadata/_custom_type_script = "uid://qrj8xqbcyce7"

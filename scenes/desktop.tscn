@@ -1,15 +1,15 @@
 [gd_scene load_steps=10 format=3 uid="uid://cmb82hi7uel06"]
 
-[ext_resource type="Texture2D" uid="uid://edd4wrefgpgk" path="res://assets/images/bg2.jpg" id="1_veafp"]
 [ext_resource type="Script" uid="uid://5frl3up50aue" path="res://scripts/desktop_functionality.gd" id="1_xxa2h"]
-[ext_resource type="PackedScene" uid="uid://daicjnek8rqh1" path="res://scenes/window.tscn" id="2_81rff"]
+[ext_resource type="Texture2D" uid="uid://drcxuunvncf7f" path="res://assets/images/sky.jpeg" id="2_veafp"]
 [ext_resource type="PackedScene" uid="uid://dae1g1cvob8rt" path="res://desktop_icons.tscn" id="3_veafp"]
+[ext_resource type="Script" uid="uid://3b32sx5xkhcb" path="res://scripts/windows.gd" id="4_pkmwo"]
 [ext_resource type="Texture2D" uid="uid://d2dfx8u6s2aj3" path="res://assets/icons/skull.png" id="4_veafp"]
 [ext_resource type="FontFile" uid="uid://byx5ps5odwlkv" path="res://assets/fonts/VT323-Regular.ttf" id="5_veafp"]
-[ext_resource type="Texture2D" uid="uid://dve4dx072r782" path="res://assets/images/bordernew2.png" id="7_veafp"]
+[ext_resource type="Texture2D" uid="uid://dda3yvcn4ll70" path="res://assets/images/border onlyup.png" id="7_veafp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_veafp"]
-bg_color = Color(0.847474, 0.847474, 0.847474, 1)
+bg_color = Color(0.811765, 0.811765, 0.811765, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ajoh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -46,16 +46,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.00784314, 0.498039, 0.513726, 1)
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/DesktopView"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_veafp")
+texture = ExtResource("2_veafp")
 expand_mode = 2
 
 [node name="Icons" type="Control" parent="VBoxContainer/DesktopView"]
@@ -88,20 +89,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Window" parent="VBoxContainer/DesktopView/Windows" instance=ExtResource("2_81rff")]
-layout_mode = 1
-offset_left = 322.0
-offset_top = 100.0
-offset_right = -105.0
-offset_bottom = -210.0
-
-[node name="Window2" parent="VBoxContainer/DesktopView/Windows" instance=ExtResource("2_81rff")]
-layout_mode = 1
-offset_left = 155.0
-offset_top = 246.0
-offset_right = -272.0
-offset_bottom = -64.0
+script = ExtResource("4_pkmwo")
 
 [node name="Taskbar" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -111,9 +99,10 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_veafp")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Taskbar"]
+editor_description = "margin on top is 9px becasue NinePatchRect uses a border that has a 3px border on top"
 layout_mode = 2
 theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
+theme_override_constants/margin_top = 9
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
